@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Электромонтаж — смета</title><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Смета"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#007AFF"><link rel="apple-touch-icon" id="ati">
+<style>
+:root{--bg:#f0f2f5;--cd:#fff;--tx:#1c1e21;--mu:#65676b;--bd:#e1e4e8;--ac:#007AFF;--ok:#34C759;--ib:#e4e6eb;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121418;--cd:#1d2128;--tx:#e8ebf0;--mu:#9aa3b2;--bd:#303743;--ac:#4da3ff;--ib:#2b313b}}
+:root[data-theme="dark"]{--bg:#121418;--cd:#1d2128;--tx:#e8ebf0;--mu:#9aa3b2;--bd:#303743;--ac:#4da3ff;--ib:#2b313b}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;padding-bottom:110px}
+.w{max-width:820px;margin:0 auto;padding:0 12px}
+header{background:var(--ac);color:#fff;padding:14px 16px 10px;margin:0 -12px}
+header h1{margin:0;font-size:19px}
+header p{margin:2px 0 0;font-size:12px;opacity:.85}
+.tabs{display:flex;gap:6px;margin:12px 0}
+.tabs button{flex:1;background:var(--cd);color:var(--mu);border:1px solid var(--bd);padding:10px;border-radius:10px;font:600 14px inherit;font-family:inherit;cursor:pointer}
+.tabs button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+input,textarea{font:inherit;color:var(--tx);background:var(--ib);border:1px solid transparent;border-radius:8px;padding:8px 10px;width:100%}
+input:focus{outline:2px solid var(--ac)}
+.cat{background:var(--cd);border-radius:12px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.08);overflow:hidden}
+.ch{display:flex;align-items:center;gap:8px;width:100%;padding:13px 14px;background:none;border:0;color:var(--tx);font:600 15px inherit;font-family:inherit;text-align:left;cursor:pointer}
+.ch .t{flex:1;color:var(--ac)}
+.ch .s{font-size:13px;color:var(--ok);font-weight:700;white-space:nowrap}
+.ch .ar{transition:transform .2s;color:var(--mu)}
+.cat.cl .ar{transform:rotate(-90deg)}
+.cat.cl .cb{display:none}
+.it{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--bd)}
+.it.on{background:rgba(0,122,255,.07)}
+.nm{flex:1;font-weight:500}
+.pr{display:block;color:var(--mu);font-size:12px;font-weight:400}
+.ct{display:flex;align-items:center;background:var(--ib);border-radius:8px;padding:2px;flex:none}
+.ct button{width:34px;height:34px;border:0;border-radius:6px;background:var(--cd);color:var(--ac);font-size:19px;font-weight:700;cursor:pointer}
+.ct input{width:52px;text-align:center;background:transparent;font-weight:700;padding:4px}
+.card{background:var(--cd);border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card h3{margin:0 0 10px;font-size:15px;color:var(--ac)}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+label{display:block;font-size:12px;color:var(--mu);margin-bottom:3px}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:10px 14px;font:600 14px inherit;font-family:inherit;cursor:pointer}
+.btn.sec{background:var(--ib);color:var(--tx)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.sc{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:480px;font-size:14px}
+th{text-align:left;font-size:12px;color:var(--mu);padding:6px 4px;border-bottom:1px solid var(--bd)}
+td{padding:7px 4px;border-bottom:1px solid var(--bd)}
+td.r,th.r{text-align:right;white-space:nowrap}
+.tt div{display:flex;justify-content:space-between;padding:4px 0}
+.tt .big{font-size:19px;font-weight:700;border-top:1px solid var(--bd);margin-top:6px;padding-top:9px}
+.x{background:none;border:0;color:#e5484d;font-size:18px;cursor:pointer;padding:4px 8px}
+.em{color:var(--mu);text-align:center;padding:18px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#1c1e21;color:#fff;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;align-items:center;box-shadow:0 -4px 15px rgba(0,0,0,.25)}
+.bar b{color:var(--ok);font-size:21px}
+.bar small{opacity:.7;display:block;font-size:11px}
+.hid{display:none}
+.pi{width:80px;text-align:right;padding:6px 8px;flex:none}
+.tabs button{font-size:13px;padding:10px 2px}
+html,body,button,input{touch-action:manipulation}
+html{-webkit-text-size-adjust:100%}
+input,textarea{font-size:16px}
+@media print{header,.tabs,.bar,.row,#pp,#pm,#pa,#prm{display:none!important}body{background:#fff;color:#000;padding:0}.card{box-shadow:none;border:1px solid #ccc}input{background:none;border:0}}
+</style>
+</head>
+<body>
+<div class="w">
+<header><h1>⚡ Калькулятор электромонтажа</h1><p>Прайс, свои позиции и итоговая смета</p></header>
+<div class="tabs"><button id="tp" class="on" onclick="tab('p')">Прайс</button><button id="tm" onclick="tab('m')">Материалы</button><button id="ts" onclick="tab('s')">Смета</button><button id="ta" onclick="tab('a')">Архив</button></div>
+
+<div id="pp">
+<input id="q" type="search" placeholder="Поиск по работам…" oninput="filt()" style="margin-bottom:10px">
+<div class="row" style="margin:0 0 10px"><button class="btn sec" onclick="foldAll(true)">Свернуть всё</button><button class="btn sec" onclick="foldAll(false)">Развернуть всё</button></div>
+<div id="cats"></div>
+<div class="card"><h3>➕ Своя позиция</h3>
+<div class="g"><div style="grid-column:1/-1"><label>Название</label><input id="cn" placeholder="Например: монтаж тёплого пола"></div>
+<div><label>Цена за ед.</label><input id="cp" type="number" min="0" step="any"></div>
+<div><label>Количество</label><input id="cq" type="number" min="0" step="any" value="1"></div></div>
+<div class="row"><button class="btn" onclick="addCu()">Добавить</button></div>
+<div id="cul" style="margin-top:8px"></div></div>
+</div>
+
+<div id="pa" class="hid"><div class="card"><h3>Архив объектов</h3><input id="aq" type="search" placeholder="Поиск по заказчику или адресу…" oninput="arch()"><p id="at" style="margin:8px 0 0;font-size:13px;color:var(--mu)"></p></div><div id="al"></div>
+<div class="card"><h3>Резервная копия</h3><p style="margin:0 0 8px;font-size:12px;color:var(--mu)">Архив хранится в телефоне. Отправьте копию себе (в Заметки, Telegram, почту), чтобы не потерять его при очистке Safari или смене телефона.</p><div class="row" style="margin-top:0"><button class="btn sec" onclick="expA()">Отправить копию архива</button></div><textarea id="ib" rows="3" placeholder="Для восстановления вставьте сюда текст копии" style="margin-top:8px"></textarea><div class="row"><button class="btn sec" onclick="impA()">Восстановить из копии</button></div></div></div>
+<div id="pm" class="hid">
+<div class="card"><h3>Наценка на материалы</h3><div class="g"><div><label>Маржа, %</label><input id="mg" type="number" step="1" min="0" oninput="sv()"></div></div>
+<p style="margin:8px 0 0;font-size:12px;color:var(--mu)">Впишите закупочные цены от продавцов (левое поле) и количество. В смету материалы пойдут с вашей маржой.</p><p id="mgi" style="margin:6px 0 0;font-size:13px;font-weight:600"></p></div>
+<div id="mcats"></div>
+<div class="card"><h3>➕ Свой материал</h3><div class="g"><div style="grid-column:1/-1"><label>Название</label><input id="mn"></div><div><label>Закупочная цена за ед.</label><input id="mpp" type="number" min="0" step="any"></div><div><label>Количество</label><input id="mqq" type="number" min="0" step="any" value="1"></div></div><div class="row"><button class="btn" onclick="addMc()">Добавить</button></div><div id="mcl" style="margin-top:8px"></div></div>
+</div>
+<div id="ps" class="hid">
+<div class="card"><h3>Объект</h3><div class="g">
+<div><label>Заказчик</label><input id="cl" oninput="sv()"></div>
+<div><label>Адрес объекта</label><input id="ad" oninput="sv()"></div></div></div>
+<div class="card"><h3>Состав сметы</h3><div class="sc" id="sm"></div></div>
+<div class="card" id="prm"><h3>Параметры расчёта</h3><div class="g">
+<div><label>Коэф. сложности (1 = норма)</label><input id="k" type="number" step="0.05" min="0" oninput="sv()"></div>
+<div><label>Скидка, %</label><input id="d" type="number" step="1" min="0" oninput="sv()"></div>
+<div><label>Выезд / доставка, сом</label><input id="v" type="number" step="50" min="0" oninput="sv()"></div></div></div>
+<div class="card tt" id="tt"></div>
+<div class="row" style="margin-bottom:10px"><button class="btn" onclick="saveA()">В архив</button><button class="btn" onclick="shr()">Отправить</button><button class="btn sec" onclick="cp()">Скопировать</button><button class="btn sec" onclick="try{window.print()}catch(e){}">PDF / печать</button><button class="btn sec" onclick="rst()">Сбросить всё</button><span id="msg" style="align-self:center;color:var(--mu);font-size:13px"></span></div>
+</div>
+</div>
+
+<div class="bar"><div><small>Итого по смете</small><b id="bt">0</b> сом</div><div style="text-align:right"><small>Позиций</small><span id="bn">0</span></div></div>
+
+<script>
+var D=[
+["1. Подготовительные и демонтажные работы",[["Демонтаж старой проводки (п.м.)",75],["Штробление стен: кирпич/шлакоблок (п.м.)",350],["Штробление стен: монолит/бетон (п.м.)",600],["Штробление потолка: бетон (п.м.)",700],["Сверление отверстий подрозетника: кирпич (шт.)",325],["Сверление отверстий подрозетника: бетон (шт.)",500],["Сверление сквозных отверстий до 25мм (шт.)",425],["Вынос и уборка строительного мусора (за объект)",1500]]],
+["2. Кабельные линии и трассы",[["Прокладка кабеля в гофре/открыто (п.м.)",100],["Прокладка силового кабеля от 10 мм² (п.м.)",240],["Протягивание кабеля в ПНД/металлорукаве (п.м.)",85],["Монтаж кабель-каналов (п.м.)",225],["Монтаж металлического лотка (п.м.)",300],["Монтаж углов/крышек лотка (шт./п.м.)",235],["Монтаж светодиодной ленты (п.м.)",325],["Опрессовка наконечников/гильз (шт.)",475],["Маркировка кабельных линий (шт.)",50]]],
+["3. Электрощитовое оборудование",[["Установка корпуса щита до 12 модулей (шт.)",850],["Установка корпуса щита до 36 модулей (шт.)",2150],["Установка корпуса щита до 72 модулей (шт.)",4000],["Монтаж и подключение 1-полюсного автомата (шт.)",300],["Монтаж и подключение 3-полюсного автомата (шт.)",600],["Монтаж и подключение УЗО/Диф 1-фазного (шт.)",400],["Монтаж и подключение УЗО/Диф 3-фазного (шт.)",800],["Монтаж реле напряжения (шт.)",1300],["Монтаж магнитного пускателя/контактора (шт.)",2400],["Монтаж кросс-модуля/распределительного блока (шт.)",750],["Монтаж реле времени с настройкой (шт.)",1800],["Монтаж АВР (Автоматического ввода резерва) (шт.)",4750],["Подключение стабилизатора / ИБП / Зарядки EV (от)",9000],["Установка и подключение электросчётчика (шт.)",2500]]],
+["4. Чистовой монтаж и коммутация",[["Установка и расключение подрозетника (шт.)",175],["Установка розетки / выключателя (шт.)",425],["Установка проходного / перекресного выключателя (шт.)",750],["Установка терморегулятора теплого пола (шт.)",1000],["Монтаж и расключение распредкоробки (шт.)",650],["Установка датчика движения / освещённости (шт.)",600],["Комплексная диагностика («прозвонка») объекта",12000]]],
+["5. Осветительные приборы",[["Установка патрона с временной лампой (шт.)",200],["Установка точечного светильника/софита (шт.)",325],["Установка настенного светильника / бра (шт.)",1550],["Установка потолочного светильника / плафона (шт.)",750],["Монтаж и сборка люстры (шт.)",1500],["Установка уличного прожектора (шт.)",1550]]],
+["6. Слаботочные и дополнительные системы",[["Прокладка слаботочного кабеля (ТВ, Интернет) (п.м.)",85],["Установка интернет / ТВ розетки (шт.)",425],["Установка роутера / коммутатора в щит (шт.)",1250],["Монтаж видеодомофона / вызывной панели (шт.)",2500],["Монтаж IP-камеры видеонаблюдения (шт.)",1800],["Монтаж контура заземления (комплект под ключ)",15000],["Монтаж УЗИП (защита от перенапряжений) (шт.)",3250]]],
+["7. Подключение бытовой техники",[["Подключение электроплиты / варочной панели (шт.)",1500],["Подключение духовки (шт.)",900],["Подключение бойлера / водонагревателя (шт.)",1200],["Подключение кондиционера (электрическая часть) (шт.)",1800],["Подключение вытяжки (шт.)",600]]],
+["8. Испытания и документация",[["Замер сопротивления изоляции (линия)",300],["Замер петли «фаза-ноль» (линия)",350],["Замер сопротивления заземления (контур)",3500],["Составление однолинейной схемы щита",2500]]]
+];
+var M=[
+["Кабель и трассы",[["Кабель ВВГнг-LS 3×1,5 (м)",55],["Кабель ВВГнг-LS 3×2,5 (м)",85],["Кабель ВВГнг-LS 3×4 (м)",130],["Кабель ВВГнг-LS 5×6 (м)",260],["Гофра ПВХ 20 мм (м)",12],["Кабель-канал 25×16 (м)",35],["Кабель UTP cat5e (м)",25],["ТВ-кабель коаксиальный (м)",20]]],
+["Щит и автоматика",[["Щит 12 модулей (шт.)",900],["Автомат 1P (шт.)",150],["Автомат 3P (шт.)",550],["УЗО / дифавтомат (шт.)",1100],["Реле напряжения (шт.)",1500],["Шина N/PE (шт.)",120]]],
+["Розетки, выключатели, свет",[["Подрозетник (шт.)",25],["Распредкоробка (шт.)",60],["Розетка (шт.)",150],["Выключатель (шт.)",150],["Светильник точечный LED (шт.)",250],["Лента LED (м)",200]]],
+["Расходники и крепёж",[["Клеммы WAGO (шт.)",25],["Изолента (шт.)",70],["Дюбель-хомут (упак.)",100],["Гипс / алебастр (кг)",20],["Наконечники/гильзы (упак.)",250]]]
+];
+var S={q:{},cu:[],mq:{},mp:{},mc:[],mg:15,col:{},k:1,d:0,v:0,cl:'',ad:'',tab:'p'};
+try{var z=localStorage.getItem('elsm2');if(z)Object.assign(S,JSON.parse(z))}catch(e){}
+var $=function(i){return document.getElementById(i)};
+function fm(x){return Math.round(x).toLocaleString('ru-RU')}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+function save(){try{localStorage.setItem('elsm2',JSON.stringify(S))}catch(e){}}
+function build(){
+ var h='';
+ D.forEach(function(c,ci){
+  h+='<div class="cat'+(S.col[ci]?' cl':'')+'" id="c'+ci+'"><button class="ch" onclick="fold('+ci+')"><span class="ar">▾</span><span class="t">'+esc(c[0])+'</span><span class="s" id="s'+ci+'"></span></button><div class="cb">';
+  c[1].forEach(function(it,ii){var id=ci+'-'+ii;
+   h+='<div class="it" id="r'+id+'" data-n="'+esc(it[0].toLowerCase())+'"><div class="nm">'+esc(it[0])+'<span class="pr">'+fm(it[1])+' сом</span></div><div class="ct"><button onclick="adj(\''+id+'\',-1)">−</button><input type="number" min="0" step="any" inputmode="decimal" id="i'+id+'" value="'+(S.q[id]||0)+'" oninput="setq(\''+id+'\',this.value)"><button onclick="adj(\''+id+'\',1)">+</button></div></div>'});
+  h+='</div></div>'});
+ $('cats').innerHTML=h;$('mcats').innerHTML=mb();mcList();$('mg').value=S.mg;
+ $('k').value=S.k;$('d').value=S.d;$('v').value=S.v;$('cl').value=S.cl;$('ad').value=S.ad;
+ cuList();calc()}
+function fold(i){S.col[i]=!S.col[i];$('c'+i).classList.toggle('cl',!!S.col[i]);save()}
+function foldAll(f){D.forEach(function(c,i){S.col[i]=f;$('c'+i).classList.toggle('cl',f)});save()}
+function adj(id,dl){var v=Math.max(0,(parseFloat($('i'+id).value)||0)+dl);$('i'+id).value=v;setq(id,v)}
+function setq(id,v){v=Math.max(0,parseFloat(v)||0);if(v)S.q[id]=v;else delete S.q[id];calc()}
+function filt(){var t=$('q').value.trim().toLowerCase();
+ D.forEach(function(c,ci){var any=false;
+  c[1].forEach(function(it,ii){var e=$('r'+ci+'-'+ii),m=!t||e.dataset.n.indexOf(t)>-1;e.style.display=m?'':'none';if(m)any=true});
+  $('c'+ci).style.display=any?'':'none';
+  if(t&&any)$('c'+ci).classList.remove('cl');else $('c'+ci).classList.toggle('cl',!!S.col[ci])})}
+function addCu(){var n=$('cn').value.trim(),p=parseFloat($('cp').value)||0,q=parseFloat($('cq').value)||0;
+ if(!n){$('cn').focus();return}
+ S.cu.push({n:n,p:p,q:q});$('cn').value='';$('cp').value='';$('cq').value=1;cuList();calc()}
+function cuList(){
+ $('cul').innerHTML=S.cu.map(function(c,i){return '<div class="it" style="padding-left:0;padding-right:0"><div class="nm">'+esc(c.n)+'<span class="pr">'+fm(c.p)+' сом</span></div><div class="ct"><input type="number" min="0" step="any" value="'+c.q+'" oninput="S.cu['+i+'].q=Math.max(0,parseFloat(this.value)||0);calc()"></div><button class="x" onclick="S.cu.splice('+i+',1);cuList();calc()">✕</button></div>'}).join('')}
+function sv(){S.k=parseFloat($('k').value);if(isNaN(S.k))S.k=1;S.d=parseFloat($('d').value)||0;S.v=parseFloat($('v').value)||0;S.mg=parseFloat($('mg').value);if(isNaN(S.mg))S.mg=0;S.cl=$('cl').value;S.ad=$('ad').value;calc()}
+function mb(){var h='';
+ M.forEach(function(c,ci){h+='<div class="cat"><button class="ch" onclick="this.parentNode.classList.toggle(\'cl\')"><span class="ar">▾</span><span class="t">'+esc(c[0])+'</span></button><div class="cb">';
+  c[1].forEach(function(it,ii){var id=ci+'-'+ii,p=S.mp[id]!=null?S.mp[id]:it[1];
+   h+='<div class="it"><div class="nm">'+esc(it[0])+'</div><input class="pi" type="number" min="0" step="any" inputmode="decimal" title="Закупочная цена" value="'+p+'" oninput="setp(\''+id+'\',this.value)"><div class="ct"><button onclick="madj(\''+id+'\',-1)">−</button><input type="number" min="0" step="any" inputmode="decimal" id="mi'+id+'" value="'+(S.mq[id]||0)+'" oninput="setmq(\''+id+'\',this.value)"><button onclick="madj(\''+id+'\',1)">+</button></div></div>'});
+  h+='</div></div>'});return h}
+function setp(id,v){S.mp[id]=Math.max(0,parseFloat(v)||0);calc()}
+function setmq(id,v){v=Math.max(0,parseFloat(v)||0);if(v)S.mq[id]=v;else delete S.mq[id];calc()}
+function madj(id,dl){var v=Math.max(0,(parseFloat($('mi'+id).value)||0)+dl);$('mi'+id).value=v;setmq(id,v)}
+function addMc(){var n=$('mn').value.trim(),p=parseFloat($('mpp').value)||0,q=parseFloat($('mqq').value)||0;if(!n){$('mn').focus();return}S.mc.push({n:n,p:p,q:q});$('mn').value='';$('mpp').value='';$('mqq').value=1;mcList();calc()}
+function mcList(){$('mcl').innerHTML=S.mc.map(function(c,i){return '<div class="it" style="padding-left:0;padding-right:0"><div class="nm">'+esc(c.n)+'</div><input class="pi" type="number" min="0" step="any" value="'+c.p+'" oninput="S.mc['+i+'].p=Math.max(0,parseFloat(this.value)||0);calc()"><div class="ct"><input type="number" min="0" step="any" value="'+c.q+'" oninput="S.mc['+i+'].q=Math.max(0,parseFloat(this.value)||0);calc()"></div><button class="x" onclick="S.mc.splice('+i+',1);mcList();calc()">✕</button></div>'}).join('')}
+function mlines(){var L=[],f=1+S.mg/100;M.forEach(function(c,ci){c[1].forEach(function(it,ii){var id=ci+'-'+ii,q=S.mq[id];if(q){var p=S.mp[id]!=null?S.mp[id]:it[1];L.push({n:it[0],q:q,b:p,p:p*f})}})});S.mc.forEach(function(c){if(c.q)L.push({n:c.n,q:c.q,b:c.p,p:c.p*f})});return L}
+var A=[];try{A=JSON.parse(localStorage.getItem('elsm_arch')||'[]')}catch(e){}
+var cur=null;
+function svA(){try{localStorage.setItem('elsm_arch',JSON.stringify(A))}catch(e){}}
+function snap(){return {q:S.q,cu:S.cu,mq:S.mq,mp:S.mp,mc:S.mc,mg:S.mg,k:S.k,d:S.d,v:S.v,cl:S.cl,ad:S.ad}}
+function saveA(){var T=window.T,m=$('msg');if(!T.L.length&&!T.ML.length){m.textContent='Смета пуста';return}
+ var o=JSON.parse(JSON.stringify(snap()));o.tot=T.tot;o.dt=new Date().toLocaleDateString('ru-RU');
+ var i=cur?A.findIndex(function(x){return x.id===cur}):-1;
+ if(i>-1){o.id=cur;A[i]=o}else{o.id=Date.now();cur=o.id;A.unshift(o)}
+ svA();m.textContent='Сохранено в архив'}
+function arch(){var t=($('aq').value||'').toLowerCase(),sum=0,h='';
+ var F=A.filter(function(x){return !t||((x.cl||'')+' '+(x.ad||'')).toLowerCase().indexOf(t)>-1});
+ F.forEach(function(x){sum+=x.tot;h+='<div class="card"><div style="display:flex;justify-content:space-between;gap:8px"><b>'+esc(x.cl||'Без имени')+'</b><b style="color:var(--ok)">'+fm(x.tot)+' сом</b></div><div style="color:var(--mu);font-size:13px">'+esc(x.ad||'—')+' · '+x.dt+'</div><div class="row"><button class="btn" onclick="opA('+x.id+')">Открыть</button><button class="btn sec" onclick="opA('+x.id+',1)">Копия</button><button class="btn sec" onclick="delA('+x.id+')">Удалить</button></div></div>'});
+ $('al').innerHTML=h||'<div class="em">Архив пуст</div>';
+ $('at').textContent=F.length?'Объектов: '+F.length+' · на сумму '+fm(sum)+' сом':''}
+function opA(id,dup){var x=A.find(function(y){return y.id===id});if(!x)return;
+ var c=JSON.parse(JSON.stringify(x));S.q=c.q;S.cu=c.cu;S.mq=c.mq;S.mp=c.mp;S.mc=c.mc;S.mg=c.mg;S.k=c.k;S.d=c.d;S.v=c.v;S.cl=c.cl;S.ad=c.ad;
+ cur=dup?null:id;build();tab('s');$('msg').textContent=dup?'Копия открыта — сохраните её в архив':''}
+function delA(id){if(window.__dl!==id){window.__dl=id;$('at').textContent='Нажмите «Удалить» ещё раз для подтверждения';return}
+ window.__dl=null;A=A.filter(function(x){return x.id!==id});if(cur===id)cur=null;svA();arch()}
+function cpT(t){var m=S.tab==='a'?$('at'):$('msg');try{navigator.clipboard.writeText(t).then(function(){m.textContent='Скопировано'},function(){m.textContent='Не удалось скопировать'})}catch(e){m.textContent='Не удалось скопировать'}}
+function shareT(t,ti){try{if(navigator.share){navigator.share({title:ti,text:t}).catch(function(){cpT(t)});return}}catch(e){}cpT(t)}
+function shr(){cp(1)}
+function expA(){shareT('ELSM:'+JSON.stringify(A),'Архив смет')}
+function impA(){var s=($('ib').value||'').trim().replace(/^ELSM:/,'');try{var a=JSON.parse(s);if(!Array.isArray(a))throw 0;var ids={};A.forEach(function(x){ids[x.id]=1});a.forEach(function(x){if(x&&x.id&&!ids[x.id])A.push(x)});A.sort(function(p,q){return q.id-p.id});svA();$('ib').value='';arch();$('at').textContent='Восстановлено. '+$('at').textContent}catch(e){$('at').textContent='Не удалось прочитать копию'}}
+function lines(){var L=[];
+ D.forEach(function(c,ci){c[1].forEach(function(it,ii){var q=S.q[ci+'-'+ii];if(q)L.push({n:it[0],q:q,p:it[1]})})});
+ S.cu.forEach(function(c){if(c.q)L.push({n:c.n,q:c.q,p:c.p})});return L}
+function calc(){
+ var sub=0;
+ D.forEach(function(c,ci){var s=0;c[1].forEach(function(it,ii){var id=ci+'-'+ii,q=S.q[id]||0;s+=q*it[1];var e=$('r'+id);if(e)e.classList.toggle('on',q>0)});sub+=s;$('s'+ci).textContent=s?fm(s)+' сом':''});
+ S.cu.forEach(function(c){sub+=c.q*c.p});
+ var a=sub*S.k,dis=a*S.d/100,ML=mlines(),mb0=0,ms=0;ML.forEach(function(l){mb0+=l.q*l.b;ms+=l.q*l.p});var tot=a-dis+ms+S.v,L=lines();
+ $('bt').textContent=fm(tot);$('bn').textContent=L.length+ML.length;
+ window.T={sub:sub,a:a,dis:dis,tot:tot,L:L,ML:ML,ms:ms};
+ if($('mgi'))$('mgi').textContent='Закупка: '+fm(mb0)+' · Продажа: '+fm(ms)+' · Ваша маржа: '+fm(ms-mb0)+' сом';
+ if(S.tab==='s')sm();
+ save()}
+function sm(){var T=window.T;
+ $('sm').innerHTML=(T.L.length||T.ML.length?'':'<div class="em">Выберите позиции на вкладках «Прайс» и «Материалы»</div>')+(T.L.length?'<table><thead><tr><th>Позиция</th><th class="r">Кол.</th><th class="r">Цена</th><th class="r">Сумма</th></tr></thead><tbody>'+T.L.map(function(l){return '<tr><td>'+esc(l.n)+'</td><td class="r">'+l.q+'</td><td class="r">'+fm(l.p)+'</td><td class="r">'+fm(l.q*l.p)+'</td></tr>'}).join('')+'</tbody></table>':'')+(T.ML.length?'<h4 style="margin:14px 0 4px">Материалы</h4><table><thead><tr><th>Материал</th><th class="r">Кол.</th><th class="r">Цена</th><th class="r">Сумма</th></tr></thead><tbody>'+T.ML.map(function(l){return '<tr><td>'+esc(l.n)+'</td><td class="r">'+l.q+'</td><td class="r">'+fm(l.p)+'</td><td class="r">'+fm(l.q*l.p)+'</td></tr>'}).join('')+'</tbody></table>':'');
+ $('tt').innerHTML='<div><span>Работы</span><b>'+fm(T.sub)+' сом</b></div>'+(S.k!==1?'<div><span>С коэффициентом ×'+S.k+'</span><b>'+fm(T.a)+' сом</b></div>':'')+(S.d?'<div><span>Скидка '+S.d+'%</span><b>−'+fm(T.dis)+' сом</b></div>':'')+(T.ms?'<div><span>Материалы</span><b>+'+fm(T.ms)+' сом</b></div>':'')+(S.v?'<div><span>Выезд / доставка</span><b>+'+fm(S.v)+' сом</b></div>':'')+'<div class="big"><span>Итого</span><span>'+fm(T.tot)+' сом</span></div>'}
+function tab(t){S.tab=t;$('pp').classList.toggle('hid',t!=='p');$('ps').classList.toggle('hid',t!=='s');$('pm').classList.toggle('hid',t!=='m');$('tm').classList.toggle('on',t==='m');$('pa').classList.toggle('hid',t!=='a');$('ta').classList.toggle('on',t==='a');if(t==='a')arch();$('tp').classList.toggle('on',t==='p');$('ts').classList.toggle('on',t==='s');if(t==='s')sm();window.scrollTo(0,0)}
+function cp(sh){var T=window.T,t='СМЕТА НА ЭЛЕКТРОМОНТАЖНЫЕ РАБОТЫ\n';
+ if(S.cl)t+='Заказчик: '+S.cl+'\n';if(S.ad)t+='Объект: '+S.ad+'\n';t+='\n';
+ T.L.forEach(function(l,i){t+=(i+1)+'. '+l.n+' — '+l.q+' × '+fm(l.p)+' = '+fm(l.q*l.p)+' сом\n'});
+ if(T.ML.length){t+='\nМатериалы:\n';T.ML.forEach(function(l,i){t+=(i+1)+'. '+l.n+' — '+l.q+' × '+fm(l.p)+' = '+fm(l.q*l.p)+' сом\n'})}t+='\nРаботы: '+fm(T.sub)+' сом';if(T.ms)t+='\nМатериалы: '+fm(T.ms)+' сом';if(S.k!==1)t+='\nКоэффициент: ×'+S.k;if(S.d)t+='\nСкидка: '+S.d+'%';if(S.v)t+='\nВыезд/доставка: '+fm(S.v)+' сом';t+='\nИТОГО: '+fm(T.tot)+' сом';
+ if(sh)shareT(t,'Смета'+(S.cl?' — '+S.cl:''));else cpT(t)}
+function rst(){if(!window.__c){window.__c=1;$('msg').textContent='Нажмите ещё раз для сброса';setTimeout(function(){window.__c=0;$('msg').textContent=''},3000);return}
+ window.__c=0;S={q:{},cu:[],mq:{},mp:{},mc:[],mg:15,col:S.col,k:1,d:0,v:0,cl:'',ad:'',tab:'s'};build();$('msg').textContent='Сброшено'}
+try{var cv=document.createElement('canvas');cv.width=cv.height=180;var g=cv.getContext('2d');g.fillStyle='#007AFF';g.fillRect(0,0,180,180);g.fillStyle='#FFD60A';g.font='110px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText('⚡',90,98);$('ati').href=cv.toDataURL('image/png')}catch(e){}
+document.addEventListener('gesturestart',function(e){e.preventDefault()});
+build();tab(S.tab||'p');
+</script>
+</body>
+</html>
