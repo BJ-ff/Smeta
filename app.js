@@ -1,6 +1,8 @@
 var S={q:{},cu:[],mq:{},mp:{},mc:[],mg:15,xp:{},xm:{},mcol:{},kk:{},pp:{},fz:null,col:{},k:1,d:0,v:0,cl:'',ad:'',tab:'p'};
 try{var z=localStorage.getItem('elsm2');if(z)Object.assign(S,JSON.parse(z))}catch(e){}
-S.xp=S.xp||{};S.xm=S.xm||{};S.mcol=S.mcol||{};S.kk=S.kk||{};S.pp=S.pp||{};
+S.xp=S.xp||{};S.xm=S.xm||{};S.mcol=S.mcol||{};S.kk=S.kk||{};S.pp=S.pp||{};S.cs=S.cs||{};S.cs.w=S.cs.w||[];S.cs.m=S.cs.m||[];
+S.cs.w.forEach(function(e){D.push([e.n,[],e.del?1:0])});
+S.cs.m.forEach(function(e){M.push([e.n,[],e.del?1:0])});
 for(var q9 in S.xp)if(D[q9])S.xp[q9].forEach(function(e){D[q9][1].push([e[0],e[1],1])});
 for(var q9 in S.xm)if(M[q9])S.xm[q9].forEach(function(e){M[q9][1].push([e[0],e[1],1])});
 var $=function(i){return document.getElementById(i)};
@@ -69,7 +71,17 @@ function expA(){shareT('ELSM:'+JSON.stringify(A),'Архив смет')}
 function impA(){var s=($('ib').value||'').trim().replace(/^ELSM:/,'');try{var a=JSON.parse(s);if(!Array.isArray(a))throw 0;var ids={};A.forEach(function(x){ids[x.id]=1});a.forEach(function(x){if(x&&x.id&&!ids[x.id])A.push(x)});A.sort(function(p,q){return q.id-p.id});svA();$('ib').value='';arch();$('at').textContent='Восстановлено. '+$('at').textContent}catch(e){$('at').textContent='Не удалось прочитать копию'}}
 function mfold(ci,b){S.mcol[ci]=!S.mcol[ci];b.parentNode.classList.toggle('cl',!!S.mcol[ci]);save()}
 function mfoldAll(f){M.forEach(function(c,i){S.mcol[i]=f});document.querySelectorAll('#mcats .cat').forEach(function(e){e.classList.toggle('cl',f)});save()}
-function addBtns(){[['cats',0],['mcats',1]].forEach(function(z){$(z[0]).querySelectorAll('.cat .cb').forEach(function(cb,ci){var d=document.createElement('div');d.className='it';d.innerHTML='<button class="btn sec" style="width:100%" onclick="fx('+z[1]+','+ci+',this)">＋ Добавить позицию</button>';cb.appendChild(d)})})}
+function addBtns(){[['cats',0],['mcats',1]].forEach(function(z){var k=z[1],Z=k?M:D,cs=S.cs[k?'m':'w'],base=Z.length-cs.length;
+ $(z[0]).querySelectorAll('.cat .cb').forEach(function(cb,ci){if(Z[ci][2]){cb.parentNode.style.display='none';return}
+  var d=document.createElement('div');d.className='it';d.innerHTML='<button class="btn sec" style="width:100%" onclick="fx('+k+','+ci+',this)">＋ Добавить позицию</button>';cb.appendChild(d);
+  if(ci>=base){var e=document.createElement('div');e.className='it';e.style.gap='8px';e.innerHTML='<button class="btn sec" style="flex:1" onclick="renSec('+k+','+ci+',this)">Переименовать</button><button class="btn sec" style="flex:1" onclick="delSec('+k+','+ci+',this)">Удалить раздел</button>';cb.appendChild(e)}});
+ var c=document.createElement('div');c.className='card';c.innerHTML='<h3>＋ Новый раздел</h3><div class="row" style="margin:0"><input id="ns'+k+'" placeholder="Название раздела" style="flex:1"><button class="btn" onclick="addSec('+k+')">Создать</button></div>';$(z[0]).appendChild(c)})}
+function addSec(k){var n=$('ns'+k).value.trim();if(!n){$('ns'+k).focus();return}S.cs[k?'m':'w'].push({n:n});(k?M:D).push([n,[],0]);build()}
+function renSec(k,ci,b){var d=b.parentNode;d.innerHTML='<input id="rn'+k+ci+'" value="'+esc((k?M:D)[ci][0])+'" style="flex:1"><button class="btn" onclick="doRen('+k+','+ci+')">ОК</button>';$('rn'+k+ci).focus()}
+function doRen(k,ci){var n=$('rn'+k+ci).value.trim();if(!n)return;var Z=k?M:D,cs=S.cs[k?'m':'w'];cs[ci-(Z.length-cs.length)].n=n;Z[ci][0]=n;build()}
+function delSec(k,ci,b){if(b.dataset.c!=='1'){b.dataset.c='1';b.textContent='Точно удалить?';return}
+ var Z=k?M:D,cs=S.cs[k?'m':'w'];cs[ci-(Z.length-cs.length)].del=1;Z[ci][1].length=0;Z[ci][2]=1;delete S[k?'xm':'xp'][ci];
+ [k?S.mq:S.q,S.mp,S.kk,S.pp].forEach(function(o){Object.keys(o).forEach(function(a){if(a.split('-')[0]==ci)delete o[a]})});build()}
 function fx(k,ci,b){var d=b.parentNode;d.style.display='block';d.innerHTML='<input placeholder="Название" id="xn'+k+ci+'" style="margin-bottom:6px"><div class="row" style="margin:0"><input type="number" step="any" min="0" inputmode="decimal" placeholder="'+(k?'Закупочная цена':'Цена')+'" id="xp'+k+ci+'" style="flex:1"><button class="btn" onclick="ax('+k+','+ci+')">Добавить</button></div>';$('xn'+k+ci).focus()}
 function ax(k,ci){var n=$('xn'+k+ci).value.trim(),p=parseFloat($('xp'+k+ci).value)||0;if(!n){$('xn'+k+ci).focus();return}
  var X=k?S.xm:S.xp;X[ci]=X[ci]||[];X[ci].push([n,p]);(k?M:D)[ci][1].push([n,p,1]);build()}
@@ -106,6 +118,6 @@ function cp(sh){var T=window.T,t='СМЕТА НА ЭЛЕКТРОМОНТАЖНЫ
  if(T.ML.length){t+='\nМатериалы:\n';T.ML.forEach(function(l,i){t+=(i+1)+'. '+l.n+' — '+l.q+' × '+fm(l.p)+' = '+fm(l.q*l.p)+' сом\n'})}t+='\nРаботы: '+fm(T.sub)+' сом';if(T.ms)t+='\nМатериалы: '+fm(T.ms)+' сом';if(S.k!==1)t+='\nКоэффициент: ×'+S.k;if(S.d)t+='\nСкидка: '+S.d+'%';if(S.v)t+='\nВыезд/доставка: '+fm(S.v)+' сом';t+='\nИТОГО: '+fm(T.tot)+' сом';
  if(sh===2)shareF(t);else if(sh)shareT(t,'Смета'+(S.cl?' — '+S.cl:''));else cpT(t)}
 function rst(){if(!window.__c){window.__c=1;$('msg').textContent='Нажмите ещё раз для сброса';setTimeout(function(){window.__c=0;$('msg').textContent=''},3000);return}
- window.__c=0;S={q:{},cu:[],mq:{},mp:{},mc:[],mg:15,xp:S.xp,xm:S.xm,mcol:S.mcol,kk:{},fz:null,col:S.col,k:1,d:0,v:0,cl:'',ad:'',tab:'s'};build();$('msg').textContent='Сброшено'}
+ window.__c=0;S={q:{},cu:[],mq:{},mp:{},mc:[],mg:15,xp:S.xp,xm:S.xm,mcol:S.mcol,cs:S.cs,pp:S.pp,kk:{},fz:null,col:S.col,k:1,d:0,v:0,cl:'',ad:'',tab:'s'};build();$('msg').textContent='Сброшено'}
 document.addEventListener('gesturestart',function(e){e.preventDefault()});
 build();tab(S.tab||'p');
